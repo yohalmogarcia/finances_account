@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finanzas Personales</title>
+    <!-- Tailwind CSS CDN para prototipado rápido -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#0f172a',
+                        cardBg: '#1e293b',
+                        accentNeon: '#10b981',
+                        accentPurple: '#6366f1'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-darkBg text-slate-100 min-h-screen font-sans pb-20">
+
+    <!-- Header -->
+    <header class="p-5 flex justify-between items-center border-b border-slate-800">
+        <div>
+            <h1 class="text-xl font-bold">Hello, <span class="text-accentNeon" th:text="${usuarioNombre}">Usuario</span>!</h1>
+            <p class="text-xs text-slate-400">Resumen de tus cuentas</p>
+        </div>
+        <div class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center font-bold text-accentNeon">
+            L
+        </div>
+    </header>
+
+    <main class="p-4 max-w-md mx-auto space-y-6">
+
+        <!-- Balance Total Card -->
+        <div class="bg-cardBg p-5 rounded-2xl border border-slate-800 shadow-xl text-center space-y-2">
+            <span class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Balance Total</span>
+            <div class="text-3xl font-extrabold text-accentNeon">$4,200.00</div>
+            <p class="text-xs text-slate-500">Saldo Consolidado MultiMoney</p>
+        </div>
+
+        <!-- Botón Principal de Acción -->
+        <button class="w-full bg-accentPurple hover:bg-indigo-600 text-white font-semibold py-3.5 px-4 rounded-xl shadow-lg transition duration-200 flex items-center justify-center space-x-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+            <span>Registrar Movimiento</span>
+        </button>
+
+        <!-- Sección de Categorías / Excel Virtual -->
+        <div class="space-y-3">
+            <h2 class="text-sm font-semibold text-slate-400">Categorías: MultiMoney (Excel Virtual)</h2>
+            
+            <div class="space-y-2">
+                <!-- Tarjeta Emergencias -->
+                <div class="bg-cardBg p-4 rounded-xl border border-slate-800 flex justify-between items-center">
+                    <div>
+                        <h3 class="font-medium text-sm">Emergencias</h3>
+                        <span class="text-xs text-slate-400">$1,000.00</span>
+                    </div>
+                    <span class="text-xs bg-red-950 text-red-400 font-semibold px-2.5 py-1 rounded-full border border-red-800/50">24%</span>
+                </div>
+
+                <!-- Tarjeta Inversión -->
+                <div class="bg-cardBg p-4 rounded-xl border border-slate-800 flex justify-between items-center">
+                    <div>
+                        <h3 class="font-medium text-sm">Inversión</h3>
+                        <span class="text-xs text-slate-400">$2,500.00</span>
+                    </div>
+                    <span class="text-xs bg-emerald-950 text-emerald-400 font-semibold px-2.5 py-1 rounded-full border border-emerald-800/50">60%</span>
+                </div>
+            </div>
+
+            <button class="w-full py-2 border border-dashed border-slate-700 text-slate-400 rounded-xl text-xs hover:border-slate-500 hover:text-slate-300 transition">
+                + Crear Categoría
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Navegación Inferior (Barra Fija) -->
+    <nav class="fixed bottom-0 inset-x-0 bg-slate-900 border-t border-slate-800 py-3 px-6 flex justify-around text-xs text-slate-400">
+        <a href="#" class="text-accentNeon flex flex-col items-center">
+            <span>Inicio</span>
+        </a>
+        <a href="#" class="flex flex-col items-center hover:text-slate-200">
+            <span>Entidades</span>
+        </a>
+        <a href="#" class="flex flex-col items-center hover:text-slate-200">
+            <span>Reportes</span>
+        </a>
+    </nav>
+
+</body>
+</html>
