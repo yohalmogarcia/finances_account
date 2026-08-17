@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nueva Categoría</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#0f172a',
+                        cardBg: '#1e293b',
+                        accentNeon: '#10b981',
+                        accentPurple: '#6366f1'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-darkBg text-slate-100 min-h-screen p-4 flex items-center justify-center">
+
+    <div class="bg-cardBg p-6 rounded-2xl border border-slate-800 shadow-xl w-full max-w-md space-y-6">
+        <h1 class="text-lg font-bold text-slate-200">Agregar Subcuenta / Categoría</h1>
+
+        <form th:action="@{/categorias/guardar}" th:object="${category}" method="POST" class="space-y-4">
+            
+            <div>
+                <label class="block text-xs text-slate-400 mb-1">Seleccionar Banco / Entidad</label>
+                <select th:field="*{bank.pkBank}" required
+                        class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2 text-sm text-slate-100 focus:outline-none focus:border-accentPurple">
+                    <option value="" disabled selected>Elige una entidad</option>
+                    <option th:each="banco : ${bancos}" th:value="${banco.pkBank}" th:text="${banco.nameBank}"></option>
+                </select>
+            </div>
+
+            <div>
+                <label class="block text-xs text-slate-400 mb-1">Nombre de la Categoría</label>
+                <input type="text" th:field="*{nameCategory}" required placeholder="Ej. Emergencias, Inversión"
+                       class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2 text-sm text-slate-100 focus:outline-none focus:border-accentPurple">
+            </div>
+
+            <div>
+                <label class="block text-xs text-slate-400 mb-1">Saldo Inicial</label>
+                <input type="number" step="0.01" th:field="*{actualBalance}" required placeholder="0.00"
+                       class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2 text-sm text-slate-100 focus:outline-none focus:border-accentPurple">
+            </div>
+
+            <div class="flex space-x-3 pt-2">
+                <a href="/financesaccount/" class="w-1/2 text-center py-2.5 border border-slate-700 text-slate-400 rounded-xl text-sm hover:border-slate-500">
+                    Cancelar
+                </a>
+                <button type="submit" class="w-1/2 bg-accentPurple hover:bg-indigo-600 text-white font-semibold py-2.5 rounded-xl text-sm transition">
+                    Guardar
+                </button>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

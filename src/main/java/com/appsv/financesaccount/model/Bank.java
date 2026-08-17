@@ -45,8 +45,7 @@ public class Bank {
 	
 	@OneToMany(mappedBy = "bank",
             cascade = CascadeType.ALL,
-            orphanRemoval = true,
-            fetch = FetchType.LAZY)
+            orphanRemoval = true)
 	private List<Category> categoryList = new ArrayList<>();
 
     @PrePersist
